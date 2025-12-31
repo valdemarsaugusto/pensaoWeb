@@ -1,0 +1,25 @@
+<div class="container mt-4">
+  <div class="text-center mb-4">
+    <h2 class="text-primary">Nossas Memórias</h2>
+    <p class="text-muted small">Momentos que ficam para sempre.</p>
+  </div>
+
+  <div class="d-grid mb-4">
+    <button class="btn btn-outline-primary py-3" (click)="adicionarFoto()">
+      📷 <b>Postar Nova Foto</b>
+    </button>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+    @for (foto of galeria(); track foto.url) {
+      <div class="col">
+        <div class="card h-100 border-0 shadow-sm overflow-hidden">
+          <img [src]="foto.url" class="card-img-top" alt="Memória da família" style="object-fit: cover; height: 200px;">
+          <div class="card-body p-2 text-center">
+            <p class="card-text small text-dark mb-0">{{ foto.legenda }}</p>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="container mt-4">
+  <div class="text-center mb-4">
+    <h3 class="text-primary fw-bold">Mural da Família</h3>
+    <p class="text-muted small">Recados e avisos importantes para todos</p>
+  </div>
+
+  <div class="card shadow-sm border-0 mb-4 bg-light">
+    <div class="card-body">
+      <h5 class="card-title text-muted mb-3" style="font-size: 1rem;">Novo Recado</h5>
+      
+      <textarea 
+        class="form-control mb-3" 
+        rows="3"
+        placeholder="Escreva algo para a família..."
+        [ngModel]="novoRecado()"
+        (ngModelChange)="novoRecado.set($event)">
+      </textarea>
+      
+      <button 
+        (click)="adicionarRecado()" 
+        class="btn btn-primary w-100 py-2"
+        [disabled]="!novoRecado().trim()">
+        <b>Postar no Mural</b>
+      </button>
+    </div>
+  </div>
+
+  <h6 class="text-muted mb-3">Recados Recentes</h6>
+  
+  <div class="row">
+    <div class="col-12">
+    @for (item of listaRecados(); track item.id) {
+      <div class="card shadow-sm border-0 mb-3 border-start border-4"
+          [class.border-primary]="item.autor === 'Augusto'"
+          [class.border-success]="item.autor !== 'Augusto'">
+        
+        <div class="card-body p-3"> 
+          
+          <div class="d-flex align-items-center mb-3">
+            <span class="badge border py-1 px-2" 
+                  [class.bg-primary]="item.autor === 'Augusto'"
+                  [class.bg-success]="item.autor !== 'Augusto'"
+                  [class.text-white]="true">
+              {{ item.autor }}
+            </span>
+            <small class="text-muted ms-2">📅 {{ item.data | date:'dd/MM/yyyy HH:mm' }}</small>
+          </div>
+          
+          <div class="row justify-content-center mb-3">
+            <div class="col-10 col-md-8 text-start">
+              <p class="mb-0 text-dark fw-bold fs-5" style="white-space: pre-wrap;">
+                {{ item.mensagem }}
+              </p>
+            </div>
+          </div>
+
+          @if (item.autor === autorAtivo) {
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end border-top pt-2">
+              <button (click)="excluirRecado(item.id)" class="btn btn-outline-danger btn-lg px-4">
+                <i class="bi bi-trash"></i> Remover meu Recado
+              </button>
+            </div>
+          }
+          
+        </div>
+  </div>
+
+      } @empty {
+        <div class="text-center p-4">
+          <p class="text-muted">Nenhum recado ainda no banco de dados.</p>
+        </div>
+      }
+    </div>
+  </div>
+</div>

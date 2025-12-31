@@ -1,0 +1,20 @@
+.fc { /* Classe padrão do FullCalendar */
+    max-height: 700px;
+    background-color: white;
+}
+
+/* Ajuste para as letras do calendário não ficarem azuis padrão */
+.fc-col-header-cell-cushion, .fc-daygrid-day-number {
+    text-decoration: none;
+    color: #444;
+}
+/* Procura por eventos que tenham o título com "(CANCELADO)" ou use uma classe customizada */
+.fc-event {
+    cursor: pointer;
+}
+
+/* Estilo para eventos cancelados */
+.event-cancelado .fc-event-title {
+    text-decoration: line-through !important; /* Efeito riscado */
+    color: #ffffff !important;
+}

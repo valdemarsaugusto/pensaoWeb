@@ -1,0 +1,80 @@
+<div class="container mt-4">
+  <div class="text-center mb-4">
+    <h3 class="text-primary fw-bold">Fluxo Financeiro</h3>
+    <p class="text-muted small">Gestão transparente de recursos e gastos</p>
+  </div>
+
+  <div class="row mb-4 g-2 text-white">
+    <div class="col-4">
+      <div class="card bg-success p-2 border-0 shadow-sm text-center">
+        <small style="font-size: 0.7rem;">Entradas</small>
+        <h6 class="mb-0" style="font-size: 0.9rem;">{{ totalEntradas() | currency:'BRL' }}</h6>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card bg-danger p-2 border-0 shadow-sm text-center">
+        <small style="font-size: 0.7rem;">Saídas</small>
+        <h6 class="mb-0" style="font-size: 0.9rem;">{{ totalSaidas() | currency:'BRL' }}</h6>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card bg-info p-2 border-0 shadow-sm text-center">
+        <small style="font-size: 0.7rem;">Saldo</small>
+        <h6 class="mb-0" style="font-size: 0.9rem;">{{ saldo() | currency:'BRL' }}</h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="card-body">
+      <h5 class="card-title text-muted mb-3" style="font-size: 1rem;">Novo Lançamento</h5>
+      
+      <input [(ngModel)]="novaDescricao" class="form-control mb-2" placeholder="Descrição (Ex: Pensão Janeiro, Material Escolar)">
+      
+      <div class="row g-2 mb-3">
+        <div class="col-6">
+          <input type="number" [(ngModel)]="novoValor" class="form-control" placeholder="Valor R$">
+        </div>
+        <div class="col-6">
+          <select [(ngModel)]="novoFluxo" class="form-select">
+            <option value="Entrada">Entrada</option>
+            <option value="Saída">Saída</option>
+          </select>
+        </div>
+      </div>
+      
+      <button (click)="adicionarGasto()" class="btn btn-primary w-100">
+        Registrar no Fluxo
+      </button>
+    </div>
+  </div>
+
+  <h6 class="text-muted mb-3">Histórico de Lançamentos</h6>
+  <div class="list-group shadow-sm mb-5">
+    @for (gasto of listaGastos(); track gasto.id) {
+      <div class="list-group-item">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <h6 class="mb-0" style="font-size: 0.95rem;">{{ gasto.descricao }}</h6>
+            <small class="text-muted" style="font-size: 0.75rem;">
+              {{ gasto.data }} • Por: <b>{{ gasto.pagoPor }}</b>
+            </small>
+          </div>
+          
+          <span [class]="gasto.fluxo === 'Entrada' ? 'text-success' : 'text-danger'" class="fw-bold">
+            {{ gasto.fluxo === 'Entrada' ? '+' : '-' }} {{ gasto.valor | currency:'BRL' }}
+          </span>
+
+          <button (click)="excluirGasto(gasto.id)" class="btn btn-sm btn-outline-danger border-0">
+                <i class="bi bi-trash"></i> Apagar
+          </button>
+        </div>
+      </div>
+
+    } @empty {
+      <div class="list-group-item text-center text-muted small">
+        Nenhum lançamento registrado neste período.
+      </div>
+    }
+  </div>
+</div>
