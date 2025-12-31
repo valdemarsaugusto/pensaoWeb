@@ -217,8 +217,6 @@ export class GenitorComponent {
           this.genitor.cidade = dados.localidade;
           this.genitor.estado = dados.uf;
           
-          // No genitor.component.ts dentro do buscarCep
-          this.genitor.logradouro = dados.logradouro;
           // ... preenche o resto
           // Opcional: focar no campo número após o CEP carregar
           document.getElementsByName('numero')[0]?.focus();
