@@ -31,5 +31,8 @@ export class GenitorService {
     genitorUpdateDto.id = id;
     return this.http.put<ResponseModel<GenitorUpdateDto>>(this.ApiUrl, genitorUpdateDto);
   }
-  // No seu service:
+
+   obterPorCpf(cpfBuscaEndereco: string): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.ApiUrl}/Genitor/buscar-cpf/${cpfBuscaEndereco}`);
+  }
 }
