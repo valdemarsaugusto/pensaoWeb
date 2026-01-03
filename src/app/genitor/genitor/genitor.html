@@ -1,13 +1,13 @@
-<div class="card-body p-4 p-md-5">
+<div class="card-body p-4 p-md-5 animate__animated animate__fadeIn">
 
     <div class="d-flex justify-content-between align-items-center mb-5 border-bottom pb-3">
         <div class="d-flex align-items-center">
             <i class="bi bi-person-plus-fill fs-2 text-vibrante me-3"></i>
-            <h3 class="text-vibrante mb-0">Cadastro do Genitor</h3>
+            <h3 class="text-vibrante mb-0">Cadastro Genitor</h3>
         </div>
 
         <div class="text-end">
-            <h5 class="text-vibrante mb-0 opacity-75">
+            <h5 class="text-vibrante mb-0 opacity-75 text-uppercase">
                 <span *ngIf="etapa == 1">1. IDENTIFICAÇÃO</span>
                 <span *ngIf="etapa == 2">2. CONTATO E LOCALIZAÇÃO</span>
                 <span *ngIf="etapa == 3">3. PROFISSÃO E RENDA</span>
@@ -17,27 +17,27 @@
     </div>
 
     <form>
-        <div *ngIf="etapa == 1" class="animate__animated animate__fadeIn">
+        <div *ngIf="etapa == 1" class="animate__animated animate__fadeInRight">
             <div class="row g-4">
                 <div class="col-md-12">
                     <label class="label-forte">NOME COMPLETO *</label>
-                    <input type="text" class="form-control input-forte w-100" [(ngModel)]="genitor.nomeCompleto" name="nome">
+                    <input type="text" class="form-control input-padrao" [(ngModel)]="genitor.nomeCompleto" name="nome">
                 </div>
                 <div class="col-md-6">
                     <label class="label-forte">NACIONALIDADE</label>
-                    <input type="text" class="form-control input-forte w-100" [(ngModel)]="genitor.nacionalidade" name="nacio">
+                    <input type="text" class="form-control input-padrao" [(ngModel)]="genitor.nacionalidade" name="nacio">
                 </div>
                 <div class="col-md-6">
                     <label class="label-forte">CPF *</label>
-                    <input type="text" class="form-control input-forte" mask="000.000.000-00" [(ngModel)]="genitor.cPF" name="cpf">
+                    <input type="text" class="form-control input-padrao" mask="000.000.000-00" [(ngModel)]="genitor.cPF" name="cpf">
                 </div>
                 <div class="col-md-6">
                     <label class="label-forte">DATA DE NASCIMENTO</label>
-                    <input type="date" class="form-control input-forte w-100" [(ngModel)]="genitor.dataNascimento" name="nasc">
+                    <input type="date" class="form-control input-padrao" [(ngModel)]="genitor.dataNascimento" name="nasc">
                 </div>
                 <div class="col-md-6">
                     <label class="label-forte">FUNÇÃO FAMILIAR</label>
-                    <select class="form-control input-forte w-100" [(ngModel)]="genitor.tipo" name="tipo">
+                    <select class="form-select input-padrao" [(ngModel)]="genitor.tipo" name="tipo">
                         <option [ngValue]="null" disabled hidden>SELECIONE UMA OPÇÃO...</option>
                         <option [ngValue]="1">MÃE / PAI (GUARDIÃO)</option>
                         <option [ngValue]="2">PAGADOR (ALIMENTANTE)</option>
@@ -47,48 +47,48 @@
             </div>
         </div>
 
-        <div *ngIf="etapa == 2" class="animate__animated animate__fadeIn">
+        <div *ngIf="etapa == 2" class="animate__animated animate__fadeInRight">
             <div class="row g-4">
                 <div class="col-md-6">
                     <label class="label-forte">TELEFONE / WHATSAPP *</label>
-                    <input type="text" class="form-control input-forte" mask="(00) 0 0000-0000" [(ngModel)]="genitor.telefone" name="tel">
+                    <input type="text" class="form-control input-padrao" mask="(00) 0 0000-0000" [(ngModel)]="genitor.telefone" name="tel">
                 </div>
                 <div class="col-md-6">
                     <label class="label-forte">E-MAIL</label>
-                    <input type="email" class="form-control input-forte" [(ngModel)]="genitor.email" name="email">
+                    <input type="email" class="form-control input-padrao" [(ngModel)]="genitor.email" name="email">
                 </div>
                 <div class="col-md-3">
                     <label class="label-forte">CEP *</label>
-                    <input type="text" class="form-control input-forte" mask="00000-000" [(ngModel)]="genitor.cEP" name="cep" (keyup)="buscarCep()">
+                    <input type="text" class="form-control input-padrao" mask="00000-000" [(ngModel)]="genitor.cEP" name="cep" (keyup)="buscarCep()">
                 </div>
                 <div class="col-md-7">
                     <label class="label-forte">LOGRADOURO</label>
-                    <input type="text" class="form-control input-forte" [(ngModel)]="genitor.logradouro" name="rua">
+                    <input type="text" class="form-control input-padrao" [(ngModel)]="genitor.logradouro" name="rua">
                 </div>
                 <div class="col-md-2">
                     <label class="label-forte">Nº *</label>
-                    <input type="text" class="form-control input-forte" [(ngModel)]="genitor.numero" name="numero">
+                    <input type="text" class="form-control input-padrao" [(ngModel)]="genitor.numero" name="numero">
                 </div>
                 <div class="col-md-4">
                     <label class="label-forte">COMPLEMENTO</label>
-                    <input type="text" class="form-control input-forte" [(ngModel)]="genitor.complemento" name="complem">
+                    <input type="text" class="form-control input-padrao" [(ngModel)]="genitor.complemento" name="complem">
                 </div>
                 <div class="col-md-4">
                     <label class="label-forte">BAIRRO</label>
-                    <input type="text" class="form-control input-forte" [(ngModel)]="genitor.bairro" name="bairro">
+                    <input type="text" class="form-control input-padrao" [(ngModel)]="genitor.bairro" name="bairro">
                 </div>
                 <div class="col-md-3">
                     <label class="label-forte">CIDADE</label>
-                    <input type="text" class="form-control input-forte" [(ngModel)]="genitor.cidade" name="cidade">
+                    <input type="text" class="form-control input-padrao" [(ngModel)]="genitor.cidade" name="cidade">
                 </div>
                 <div class="col-md-1">
                     <label class="label-forte">UF</label>
-                    <input type="text" class="form-control input-forte" [(ngModel)]="genitor.estado" name="uf">
+                    <input type="text" class="form-control input-padrao" [(ngModel)]="genitor.estado" name="uf">
                 </div>
             </div>
         </div>
 
-        <div *ngIf="etapa == 3" class="animate__animated animate__fadeIn">
+        <div *ngIf="etapa == 3" class="animate__animated animate__fadeInRight">
             <div class="row g-4">
                 <div class="col-12">
                     <div class="form-check form-switch p-3 border rounded bg-light shadow-sm">
@@ -102,33 +102,22 @@
 
                 <div class="col-md-12">
                     <label class="label-forte">PROFISSÃO / FONTE DE RENDA</label>
-                    <input type="text" class="form-control input-forte" [(ngModel)]="genitor.profissao" name="prof" placeholder="Ex: Advogado, Autônomo...">
+                    <input type="text" class="form-control input-padrao" [(ngModel)]="genitor.profissao" name="prof" placeholder="Ex: Advogado, Autônomo...">
                 </div>
 
                 <ng-container *ngIf="genitor.possuiVinculoFormal">
                     <div class="col-md-4">
                         <label class="label-forte">CNPJ DA EMPRESA</label>
                         <div class="input-group">
-                            <input type="text" 
-                                   class="form-control input-forte border-end-0" 
-                                   mask="00.000.000/0000-00" 
-                                   [(ngModel)]="genitor.empregoCNPJ" 
-                                   name="cnpj" 
-                                   (keyup)="buscarEmpresa()">
+                            <input type="text" class="form-control input-padrao border-end-0" mask="00.000.000/0000-00" [(ngModel)]="genitor.empregoCNPJ" name="cnpj" (keyup)="buscarEmpresa()">
                             <span class="input-group-text bg-white border-start-0" *ngIf="carregandoEmpresa">
                                 <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
                             </span>
                         </div>
                     </div>
-
                     <div class="col-md-8">
                         <label class="label-forte">RAZÃO SOCIAL DA EMPRESA</label>
-                        <input type="text" 
-                               class="form-control input-forte bg-light" 
-                               [(ngModel)]="genitor.nomeEmpresa" 
-                               name="razaoSocial" 
-                               readonly 
-                               placeholder="Aguardando CNPJ válido...">
+                        <input type="text" class="form-control input-padrao bg-light" [(ngModel)]="genitor.nomeEmpresa" name="razaoSocial" readonly placeholder="Aguardando CNPJ válido...">
                     </div>
                 </ng-container>
 
@@ -136,8 +125,7 @@
                     <label class="label-forte">SALÁRIO MENSAL (R$)</label>
                     <div class="input-group">
                         <span class="input-group-text bg-primary text-white border-0 fw-bold">R$</span>
-                        <input type="text" class="form-control input-forte" [(ngModel)]="genitor.salarioMensal" 
-                               name="salario" mask="separator.2" thousandSeparator="." decimalMarker="," placeholder="0,00">
+                        <input type="text" class="form-control input-padrao" [(ngModel)]="genitor.salarioMensal" name="salario" mask="separator.2" thousandSeparator="." decimalMarker="," placeholder="0,00">
                     </div>
                 </div>
 
@@ -145,19 +133,15 @@
                     <label class="label-forte">VALOR DA PENSÃO (R$)</label>
                     <div class="input-group">
                         <span class="input-group-text bg-success text-white border-0 fw-bold">R$</span>
-                        <input type="text" class="form-control input-forte" [(ngModel)]="genitor.valorPensao" 
-                               name="pensao" mask="separator.2" thousandSeparator="." decimalMarker="," placeholder="0,00">
+                        <input type="text" class="form-control input-padrao" [(ngModel)]="genitor.valorPensao" name="pensao" mask="separator.2" thousandSeparator="." decimalMarker="," placeholder="0,00">
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <label class="label-forte">DIA DO PAGAMENTO (1 A 31)</label>
                     <div class="input-group w-100">
-                        <span class="input-group-text bg-vibrante text-white border-0">
-                            <i class="bi bi-calendar-check"></i>
-                        </span>
-                        <input type="number" class="form-control input-forte" [(ngModel)]="genitor.dataPagamento" 
-                               name="diaPgto" oninput="if(value.length > 2) value = value.slice(0,2); if(value > 31) value = 31;" placeholder="Ex: 05">
+                        <span class="input-group-text bg-vibrante text-white border-0"><i class="bi bi-calendar-check"></i></span>
+                        <input type="number" class="form-control input-padrao" [(ngModel)]="genitor.dataPagamento" name="diaPgto" oninput="if(value.length > 2) value = value.slice(0,2); if(value > 31) value = 31;" placeholder="Ex: 05">
                     </div>
                 </div>
 
@@ -171,14 +155,16 @@
         </div>
 
         <div class="d-flex justify-content-between align-items-center mt-5 pt-3 border-top">
-            <button type="button" class="btn btn-outline-dark fw-bold px-4 py-2" (click)="voltar()" *ngIf="etapa > 1">← VOLTAR</button>
+            <button type="button" class="btn btn-outline-secondary px-5 fw-bold" (click)="voltar()" *ngIf="etapa > 1">
+                ANTERIOR
+            </button>
             
             <div class="d-flex flex-column align-items-end">
-                <button type="button" *ngIf="etapa < 3" class="btn btn-primary btn-lg px-5 shadow-sm" (click)="proximo()" [disabled]="!etapaValida()">
+                <button type="button" *ngIf="etapa < 3" class="btn btn-primary px-5 fw-bold shadow-sm" (click)="proximo()" [disabled]="!etapaValida()">
                     PRÓXIMO PASSO <i class="bi bi-arrow-right ms-2"></i>
                 </button>
 
-                <button type="button" *ngIf="etapa == 3" class="btn btn-success btn-lg px-5 shadow-sm" (click)="salvar()" [disabled]="!etapaValida()">
+                <button type="button" *ngIf="etapa == 3" class="btn btn-success px-5 fw-bold shadow-sm" (click)="salvar()" [disabled]="!etapaValida()">
                     FINALIZAR CADASTRO <i class="bi bi-check-lg ms-2"></i>
                 </button>
                 

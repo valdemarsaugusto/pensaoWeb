@@ -16,7 +16,7 @@ export interface GenitorModel {
     email: string;
 
     // Endereço
-    cEP: string;
+    cep: string;
     logradouro: string,
     bairro: string,
     cidade: string,

@@ -1,1 +1,72 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files *
+/* --- PADRONIZAÇÃO GLOBAL PENSÃOWEB --- */
+
+/* Título e Cores de Destaque (Baseado no Filho/Bootstrap) */
+.text-vibrante {
+    color: #0d6efd !important; 
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* Labels: O padrão que você aprovou no Filho */
+.label-forte {
+    font-weight: 800 !important;
+    font-size: 0.75rem !important;
+    color: #1a237e !important; /* Azul escuro profissional */
+    text-transform: uppercase !important;
+    margin-bottom: 8px;
+    display: block;
+    letter-spacing: 0.5px;
+}
+
+/* Inputs e Selects: Unificando as classes (Forte e Padrão agora são iguais) */
+.input-padrao, .input-forte {
+    border: 1.5px solid #0d6efd !important;
+    border-radius: 8px !important;
+    padding: 10px 15px !important;
+    font-size: 1rem !important;
+    color: #333 !important;
+    background-color: #fff !important;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Foco nos campos */
+.input-padrao:focus, .input-forte:focus {
+    border-color: #0b5ed7 !important;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1) !important;
+    background-color: #fcfdff;
+    outline: none;
+}
+
+/* Utilitários de erro e leitura */
+.input-error {
+    border: 2px solid #dc3545 !important;
+    background-color: #fff8f8;
+}
+
+.input-readonly {
+    background-color: #f8f9fa !important;
+    border: 1.5px solid #dee2e6 !important;
+    color: #6c757d !important;
+}
+
+/* Ajuste de Input Group para não quebrar ícones */
+.input-group {
+    display: flex !important;
+    width: 100% !important;
+}
+
+.input-group-text {
+    border: 1.5px solid #0d6efd !important;
+    background-color: #0d6efd !important;
+    color: white !important;
+}
+
+/* Badge de Passos */
+.badge-passo {
+    background-color: #0d6efd;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.8rem;
+}

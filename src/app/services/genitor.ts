@@ -32,7 +32,7 @@ export class GenitorService {
     return this.http.put<ResponseModel<GenitorUpdateDto>>(this.ApiUrl, genitorUpdateDto);
   }
 
-   obterPorCpf(cpfBuscaEndereco: string): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.ApiUrl}/Genitor/buscar-cpf/${cpfBuscaEndereco}`);
+   obterPorCpf(cpfBuscaEndereco: string): Observable<ResponseModel<GenitorModel>> {
+    return this.http.get<ResponseModel<GenitorModel>>(`${environment.ApiUrl}/Genitor/buscar-cpf/${cpfBuscaEndereco}`);
   }
 }

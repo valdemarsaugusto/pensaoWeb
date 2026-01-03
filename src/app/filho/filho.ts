@@ -5,12 +5,13 @@ import { GenitorService } from '../services/genitor';
 import { UtilsService } from '../services/utils/utils';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 
 @Component({
   selector: 'app-filho',
   templateUrl: './filho.html',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgxMaskDirective],
   styleUrls: ['./filho.css']
 })
 export class FilhoComponent implements OnInit {
@@ -106,34 +107,25 @@ export class FilhoComponent implements OnInit {
     }
   }
 
+  // No seu componente .ts
   validarCPFResponsavel() {
-    this.cpfBuscaResponsavel = this.aplicarMascaraCPF(this.cpfBuscaResponsavel);
-    const cpfLimpo = this.cpfBuscaResponsavel.replace(/\D/g, '');
-    
-    // Sua lógica original de validação
-    this.cpfResponsavelInvalido = cpfLimpo.length === 11 ? !this.utils.validarCPF(cpfLimpo) : false;
-
-    // AGORA: Se o CPF for válido e tiver 11 dígitos, busca no banco
-    if (cpfLimpo.length === 11 && !this.cpfResponsavelInvalido) {
-      this.genitorService.obterPorCpf(cpfLimpo).subscribe({
-        next: (res: any) => {
-          if (res && res.status && res.dados) {
-            const g = res.dados;
-            this.nomeResponsavelEncontrado = g.nomeCompleto;
-            this.tipoResponsavelEncontrado = g.tipo; // Guarda o tipo (1, 2 ou 3)
-
-            // Lógica de UX: 
-            // Se for Tipo 2 (Alimentante), o foco vai para o valor.
-            // Se não for, já pode habilitar o botão ADD diretamente.
-            if (g.tipo !== 2) {
-              this.valorPensaoTemp = 0;
-            }
+    if (this.cpfBuscaResponsavel.length === 11 || this.cpfBuscaResponsavel.length === 14) {
+      this.genitorService.obterPorCpf(this.cpfBuscaResponsavel).subscribe(res => {
+        if (res && res.dados) {
+          this.nomeResponsavelEncontrado = res.dados.nomeCompleto;
+          // Mapeamento correto das propriedades vindas do servidor
+          if (res.dados.cep) {
+                    this.filho.cep = res.dados.cep.replace(/\D/g, '');
           } else {
-            this.utils.showError('Responsável não encontrado.');
-            this.nomeResponsavelEncontrado = '';
+              this.filho.cep = ''; // Caso não venha CEP, limpa o campo
           }
-        },
-        error: () => this.utils.showError('Erro ao buscar responsável.')
+          this.filho.logradouro = res.dados.logradouro;
+          this.filho.numero = res.dados.numero;
+          this.filho.bairro = res.dados.bairro;
+          this.filho.cidade = res.dados.cidade;
+          this.filho.estado = res.dados.estado; // Atribui ao estado
+          this.filho.uf = res.dados.estado;     // Atribui à UF por segurança
+        }
       });
     }
   }
@@ -253,15 +245,28 @@ adicionarResponsavelGrid() {
     this.responsaveisGrid.splice(index, 1);
   }
 
-  salvar() {
-    const dadosParaEnvio = {
-      ...this.filho,
-      responsaveisIds: this.responsaveisGrid.map(r => r.id)
-    };
-
-    this.filhoService.criar(dadosParaEnvio).subscribe({
-      next: () => this.utils.showSuccess('Cadastro realizado com sucesso!'),
-      error: () => this.utils.showError('Erro ao salvar o cadastro.')
-    });
+  // Avança para a próxima etapa
+  proximaEtapa() {
+    if (this.etapaAtual < 4) {
+      this.etapaAtual++;
+      window.scrollTo(0, 0); // Volta o scroll para o topo ao mudar de aba
+    } else {
+      this.salvar(); // Se estiver na última etapa (4), chama o salvar
+    }
   }
+
+  // Volta para a etapa anterior
+  voltarEtapa() {
+    if (this.etapaAtual > 1) {
+      this.etapaAtual--;
+      window.scrollTo(0, 0);
+    }
+  }
+
+  // Método para finalizar o cadastro (exemplo)
+  salvar() {
+    console.log('Dados para salvar:', this.filho, this.responsaveisGrid);
+    this.utils.showSuccess('Cadastro realizado com sucesso!');
+    // Aqui você chamaria o seu service.post...
+}
 }
