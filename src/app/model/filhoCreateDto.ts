@@ -1,11 +1,13 @@
+import { FilhoGenitorCreateDto } from "./filhoGenitorCreateDto";
+
 export interface FilhoCreateDto {
     nomeCompleto: string;
     nacionalidade: string;
     cpf: string;
     dataNascimento: string;
 
-    // Endereço (se for diferente do genitor)
-    genitorMoraCriancaId: number | null;
+    // Endereço e Controle
+    genitorMoraCriancaId: boolean;
     cep: string;
     logradouro: string;
     numero: string;
@@ -15,9 +17,9 @@ export interface FilhoCreateDto {
     estado: string;
     uf: string;
 
-    // Dados Escolares que você definiu
+    // Dados Escolares
     escola: string;
-    serie:string;
+    serie: string;
     turno: string;
     dataInicioPeriodoLetivo: string;
     dataTerminoPeriodoLetivo: string;
@@ -25,4 +27,10 @@ export interface FilhoCreateDto {
     dataTerminoRecessoEscolar: string;
     dataInicioFeriasEscolar: string;
     dataTerminoFeriasEscolar: string;
+
+    // --- ADICIONE ESTE CAMPO ABAIXO ---
+    // Esta lista deve bater com o nome esperado no C#
+    Responsaveis: FilhoGenitorCreateDto[]; 
 }
+
+// Interface auxiliar para a tabela intermediária
